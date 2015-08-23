@@ -1,0 +1,126 @@
+body {
+  /*display: none;*/
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  padding: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+}
+a:hover {
+  color: #158969;
+}
+
+i{
+  font-weight: 200;
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 0.4rem 0;
+}
+
+.input, .submit, .loader {
+  padding: 5px 10px 5px 10px;
+  border: 0px;
+  margin-top: 5px;
+  color: #000;
+  width: 100%;
+  height: 60px;
+  font-size: 2em;
+}
+
+.input {
+  background-color: #F1F2F4;
+}
+
+.submit {
+  background-color: #d8d9db;
+  transition: all 0.2s ease-in-out;
+}
+.submit:hover {
+  background-color: #55c9a9;
+}
+.submit:active {
+  background-color: #55c9a9;
+}
+
+.results {
+  margin: 2rem 0 2rem 0;
+}
+
+.loader {
+  display: none;
+  text-align: center;
+}
+
+.overview {
+  display: block;
+}
+
+.company_logo {
+  margin: 1rem;
+}
+
+.skill_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+  
+.skill {
+  padding: 0.4rem;
+  background-color: #F1F2F4;
+  margin: 0.1rem;
+}
+
+.skills-graph {
+  display:flex;
+}
+.skills-graph__tag {
+  text-align: center;  
+}
+.skills-graph__tag:nth-child(1) {
+  background-color: red;
+}
+.skills-graph__tag:nth-child(2) {
+  background-color: blue;
+}
+.skills-graph__tag:nth-child(3) {
+  background-color: green;
+}
+
+
+
+.location__total {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+
+
+#skills_more, #skills_less {
+  padding: 0.4rem;
+  margin: 0.1rem;
+  font-weight: bold;
+  align-self: center;
+}
+
+#skills_more:hover, #skills_less:hover {
+  cursor: pointer;
+}
+
+#logo {
+  color: #000;
+  transition: all 0.8s ease-in-out;
+}
+#logo:hover {
+  color: #000;
+  cursor: pointer;
+  letter-spacing: 0.2rem;
+}
+
+

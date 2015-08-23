@@ -1,0 +1,132 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Scrappy (v0.1)</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link href="/styles/styles.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300,300italic,400italic' rel='stylesheet' type='text/css'>
+        
+    </head>
+<body>
+
+
+<a href="/"><h1 id="logo"><i class="fa fa-list"></i> SCRAPPY</h1></a>
+
+<form method="post" action="/results">
+    <input class="input input-keyword" type="text" value="<%= @keyword.gsub('+',' ') if @keyword %>" name="keyword" placeholder="Position or Key term(s)">
+    <input class="input input-city" type="text" value="<%= @city.gsub('+',' ') if @city %>" name="city" placeholder="Zip or Location">
+    <input class="input input-range" type="text" value="<%= @range if @range %>" name="range" placeholder="Range (in miles)">
+    <input class="submit" type="submit" value="Submit">
+    <div class="loader"><i class="fa fa-cog fa-spin"></i></div>
+</form>
+
+
+<div class="location_set">
+    <!--<div class="location__summary">-->
+    <!--    <h1><%= @city %></h1>-->
+    <!--    <div class="location__total">Total Jobs <b>5142</b></div>-->
+    <!--    <div class="skills-graph">-->
+    <!--        <div class="skills-graph__tag" style="flex-grow:2;">C#</div>-->
+    <!--        <div class="skills-graph__tag" style="flex-grow:5;">Javascript</div>-->
+    <!--        <div class="skills-graph__tag" style="flex-grow:0.5;">Ruby</div> -->
+    <!--    </div>-->
+    <!--</div>-->
+    
+    <% if @cs == 'stack' || @cs == 'all' %>
+        <div class="results">
+            <h2><img src="/images/30stack.png"/> Stack Overflow</h2>
+            <!--<img class="company_logo"src="https://blog.stackexchange.com/images/wordpress/stackoverflow-logo-300.png" />-->
+            <% if @stack_url %>
+              <div class="overview">Pulling data for all jobs within <%= @range %> miles in <%= @city %> via <a target="_blank" href="<%= @stack_url %>">Stack Overflow</a> <i>(found <%= @pages.count %> pages of results)</i></div>
+            <% end %>
+            
+            <%= @stack_info if @stack_info %>
+            <% if @tags && @tags.count > 0 %>
+            
+                <h4>Top Skills</h4>
+                <div class="skill_container">
+                    <% @tags.each do |skill, number| %>
+                        <div class="skill"><%= skill %> (<%= number %>)</div>
+                    <% end %>
+                    <div id="skills_more">Show more</div> <div id="skills_less">Show less</div>
+                </div>
+                
+                
+            <% end %>
+        </div>
+    <% end %>
+    
+    
+    
+    <% if @cs == 'indeed' || @cs == 'all' %>
+        <div class="results">
+            <h2><img src="/images/30indeed.png"/> Indeed</h2>
+            <% if @indeed_url %>
+              <div class="overview">Pulling data for all jobs within <%= @range %> miles in <%= @city.gsub('+', ' ') %> via <a target="_blank" href="<%= @indeed_url %>">Indeed</a></div>
+            <% end %>
+            
+            <%= @indeed_info if @indeed_info %>
+        </div>
+    <% end %>
+    
+    
+    <% if @cs == 'dice' || @cs == 'all' %>
+        <div class="results">
+            <h2><img src="/images/30dice.jpg"/> Dice</h2>
+            <% if @dice_url %>
+              <div class="overview">Pulling data for all jobs within <%= @range %> miles in <%= @city.gsub('+', ' ') %> via <a target="_blank" href="<%= @dice_url %>">Dice</a></div>
+            <% end %>
+            
+            <%= @dice_info if @dice_info %>
+        </div>
+    <% end %>
+</div>
+
+
+
+
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+    $('#skills_less').hide()
+    $('.skill').hide()
+    $('.skill').slice(0, 15).show();
+
+    
+    $(".submit").click(function(e) {
+        if ( $('.input-range').val() == "" || $('.input-city').val() == "" || $('.input-range').val() == ""){
+            e.preventDefault();
+            alert('All fields must be present.')
+        } else {
+            $('.submit').hide();
+            $('.loader').show();
+        }
+    })
+    
+    $("#skills_more").click(function() {
+      $('.skill').show();
+      $('#skills_less').show();
+      $("#skills_more").hide();
+    });
+    
+    $("#skills_less").click(function() {
+      $('.skill').hide();
+      $('.skill').slice(0, 15).show();
+      $("#skills_more").show();
+      $("#skills_less").hide();
+    });
+    
+    // $(document).ready(function() {
+    //     $('body').fadeIn();
+    // });
+    
+    
+</script>
