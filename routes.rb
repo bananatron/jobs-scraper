@@ -71,42 +71,6 @@ get '/:content_source/:city/:range/:keyword' do
     
   end
   
-  # if @cs == "51job"
-  #   @fiftyone_url = "http://search.51job.com/jobsearch/search_result.php?fromJs=1&jobarea=010000%2C030200%2C020000%2C040000%2C01&funtype=0000&industrytype=00&keyword=software%20engineer&keywordtype=1&lang=e&stype=1&postchannel=0000&fromType=1"
-  #   #url_parse = open(@fiftyone_url)
-  #   open("temp_51.txt", "wb") do |file|
-  #     open(@fiftyone_url) do |uri|
-  #       file.write(uri.read)
-  #     end
-  #   end
-    
-  #   data = File.read('temp_51.txt')
-  #   fetch = Nokogiri::HTML(data)
-  #   @job_count = fetch.at_css("input[name='jobid_count']")['value']
-    
-  #   #jobs_on_page = fetch.css('.jobname')
-  #   num_pages = fetch.at_css('.searchPageNav').children.children.count - 2
-    
-  #   @job_links = []
-    
-  #   num_pages.times do |inum|
-      
-  #     page_num = inum + 1
-  #     page_url = "http://search.51job.com/jobsearch/search_result.php?fromJs=1&jobarea=010000%2C030200%2C020000%2C040000%2C01&district=000000&funtype=0000&industrytype=00&issuedate=9&providesalary=99&keyword=software%20engineer&keywordtype=1&curr_page=#{page_num}&lang=e&stype=1&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=01&companysize=99&lonlat=0%2C0&radius=-1&ord_field=0&list_type=0&fromType=14&dibiaoid=-1"
-  #     open("temp_51.txt", "wb") do |file|
-  #       open(page_url) do |uri|
-  #         file.write(uri.read)
-  #       end
-  #     end
-      
-  #     data = File.read('temp_51.txt')
-  #     fetch = Nokogiri::HTML(data)
-  #     @job_links << jobs_on_page = fetch.css('.jobname')
-      
-  #   end
-    
-  # end
-  
   erb :index
 end
 

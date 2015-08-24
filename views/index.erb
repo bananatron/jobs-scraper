@@ -91,7 +91,7 @@
     <% if @cs == 'china'  %>
         <div class="results">
             <h2><img src="http://www.lpi.usra.edu/humansinspaceart/youth_art_competition/images/imgChina.png"/> China </h2>
-            <i>Results in Beijing, Guangzhou, Shanghai, Shenzhen, Zhujiang Delta <% if @keyword %> for <b><%= @keyword  %></b><% end %></i>
+            <i>Results in Beijing, Guangzhou, Shanghai, Shenzhen, Zhujiang Delta <% if @keyword %> for <b><a target="_blank" href="<%= @fiftyone_url %>"><%= @keyword  %></a></b><% end %></i>
             
             <%  if @job_count %><br><h3><%= @job_count %> jobs found!</h3><br><% end %>
             
