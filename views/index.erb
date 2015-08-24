@@ -14,12 +14,15 @@
 <body>
 
 
-<a href="/"><h1 id="logo"><i class="fa fa-list"></i> SCRAPPY</h1></a>
+<a href="/"><h1 id="logo"><i class="fa fa-list"></i> SCRAPPY</h1></a> <a href="/">USA</a> - <a href="/china">CHINA</a>
+
 
 <form method="post" action="/results">
     <input class="input input-keyword" type="text" value="<%= @keyword.gsub('+',' ') if @keyword %>" name="keyword" placeholder="Position or Key term(s)">
-    <input class="input input-city" type="text" value="<%= @city.gsub('+',' ') if @city %>" name="city" placeholder="Zip or Location">
-    <input class="input input-range" type="text" value="<%= @range if @range %>" name="range" placeholder="Range (in miles)">
+    <% if @cs != 'china' %><input class="input input-city" type="text" value="<%= @city.gsub('+',' ') if @city %>" name="city" placeholder="Zip or Location"><% end %>
+    <% if @cs != 'china' %><input class="input input-range" type="text" value="<%= @range if @range %>" name="range" placeholder="Range (in miles)"><% end %>
+    <% if @cs == 'china' %><input class="input input-city" type="text" value="china" name="city" readonly><% end %>
+
     <input class="submit" type="submit" value="Submit">
     <div class="loader"><i class="fa fa-cog fa-spin"></i></div>
 </form>
@@ -47,7 +50,7 @@
             <%= @stack_info if @stack_info %>
             <% if @tags && @tags.count > 0 %>
             
-                <h4>Top Skills</h4>
+                <br><h4>Top Skills</h4><br>
                 <div class="skill_container">
                     <% @tags.each do |skill, number| %>
                         <div class="skill"><%= skill %> (<%= number %>)</div>
@@ -84,11 +87,27 @@
             <%= @dice_info if @dice_info %>
         </div>
     <% end %>
+    
+    <% if @cs == 'china'  %>
+        <div class="results">
+            <h2><img src="http://www.lpi.usra.edu/humansinspaceart/youth_art_competition/images/imgChina.png"/> China </h2>
+            <i>Results in Beijing, Guangzhou, Shanghai, Shenzhen, Zhujiang Delta <% if @keyword %> for <b><%= @keyword  %></b><% end %></i>
+            
+            <%  if @job_count %><br><h3><%= @job_count %> jobs found!</h3><br><% end %>
+            
+            <% if @job_links %>
+            <h4>Job Titles</h4>
+            <div class="skill_container">
+                <% @job_links.each do |skill| %>
+                    <div class="skill"><%= skill %></div>
+                <% end %>
+                <div id="skills_more">Show more</div> <div id="skills_less">Show less</div>
+            </div>
+            <% end %>
+            
+        </div>
+    <% end %>
 </div>
-
-
-
-
 
 
 </body>
